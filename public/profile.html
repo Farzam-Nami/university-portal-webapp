@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile & Settings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">AppName</div>
+        </div>
+        <div class="sidebar-menu">
+            <a href="/dashboard" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                    </svg>
+                </span>
+                &nbspDashboard
+            </a>
+            <a href="/food-reservation" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.20-1.10-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
+                    </svg>
+                </span>
+                &nbspFood Reservation
+            </a>
+            <a href="/requests" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                    </svg>
+                </span>
+                &nbspRequests
+            </a>
+            <a href="/courses" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19,3H5C3.9,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19Z"/>
+                        <path d="M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/>
+                    </svg>
+                </span>
+                &nbspSemester Courses
+            </a>
+            <a href="/financial" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20,8H4V6C4,4.89 4.89,4 6,4H18A2,2 0 0,1 20,6V8M4,10H20V19A2,2 0 0,1 18,21H6A2,2 0 0,1 4,19V10M6,12V14H18V12H6Z"/>
+                    </svg>
+                </span>
+                &nbspPayments & Finance
+            </a>
+            <a href="/news" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"/>
+                    </svg>
+                </span>
+                &nbspMessages & Announcements
+            </a>
+            <a href="/profile" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </span>
+                &nbspProfile & Settings
+            </a>
+            <a href="#" onclick="confirmLogout()" class="menu-item logout-btn">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"/>
+                    </svg>
+                </span>
+                &nbspLogout
+            </a>
+        </div>
+    </div>
+
+    <!-- Menu toggle button for mobile -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Profile & Settings</h1>
+        
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-avatar" id="profileAvatar"><!-- AVATAR_PLACEHOLDER --></div>
+            <div class="profile-info">
+                <h2 id="profileDisplayName"><!-- DISPLAY_NAME_PLACEHOLDER --></h2>
+                <p id="profileTitle"><!-- STUDENT_INFO_PLACEHOLDER --></p>
+                <p id="profileMembership">Member since: <!-- MEMBER_SINCE_PLACEHOLDER --></p>
+            </div>
+        </div>
+        
+        <!-- Read-only Information Card -->
+        <div class="card">
+            <div class="card-title">Account Details</div>
+            <div class="profile-info-grid">
+                <div class="info-item">
+                    <label>Student ID:</label>
+                    <span id="studentId"><!-- STUDENT_ID_PLACEHOLDER --></span>
+                </div>
+                <div class="info-item">
+                    <label>Username:</label>
+                    <span id="username"><!-- USERNAME_PLACEHOLDER --></span>
+                </div>
+                <div class="info-item">
+                    <label>Major:</label>
+                    <span id="major"><!-- MAJOR_PLACEHOLDER --></span>
+                </div>
+                <div class="info-item">
+                    <label>Faculty:</label>
+                    <span id="faculty"><!-- FACULTY_PLACEHOLDER --></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Two-column layout for Personal Info and Password Change -->
+        <div class="profile-sections-container">
+            <!-- Personal Information Section -->
+            <div class="card profile-section">
+                <div class="card-title">Personal Information</div>
+                <form class="settings-form" id="profileForm">
+                    <div class="form-row">
+                        <label>National ID</label>
+                        <input type="text" id="nationalId" name="nationalId" placeholder="Enter your national ID">
+                    </div>
+                    <div class="form-row">
+                        <label>First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+                    </div>
+                    <div class="form-row">
+                        <label>Last name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+                    </div>
+                    <div class="form-row">
+                        <label>Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address">
+                    </div>
+                    <div class="form-row">
+                        <label>Date of Birth</label>
+                        <input type="text" id="birthDate" name="birthDate" placeholder="YYYY-MM-DD">
+                    </div>
+                    <button type="submit" class="form-button">Save Changes</button>
+                    <div id="profileMessage" class="message"></div>
+                </form>
+            </div>
+            
+            <!-- Password Change Section -->
+            <div class="card profile-section">
+                <div class="card-title">Change Password</div>
+                <form class="settings-form" id="passwordForm">
+                    <div class="form-row">
+                        <label>Current Password</label>
+                        <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter your current password" required>
+                    </div>
+                    <div class="form-row">
+                        <label>New Password</label>
+                        <input type="password" id="newPassword" name="newPassword" placeholder="Enter your new password" required>
+                    </div>
+                    <div class="form-row">
+                        <label>Confirm New Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your new password" required>
+                    </div>
+                    <button type="submit" class="form-button">Change Password</button>
+                    <div id="passwordMessage" class="message"></div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script src="sidebar.js"></script>
+<script>
+function confirmLogout() {
+    if (confirm('Are you sure you want to log out?')) {
+        window.location.href = '/logout';
+    }
+}
+
+// Convert Persian and Arabic-Indic digits to Western digits.
+function toEnglishNumerals(value) {
+    return String(value).replace(/[\u06F0-\u06F9\u0660-\u0669]/g, digit => {
+        const code = digit.charCodeAt(0);
+        return String(code >= 0x06F0 ? code - 0x06F0 : code - 0x0660);
+    });
+}
+
+// Profile form submission handler
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const profileData = Object.fromEntries(formData.entries());
+        
+        try {
+            const response = await fetch('/api/profile', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(profileData)
+            });
+            
+            const result = await response.json();
+            const messageDiv = document.getElementById('profileMessage');
+            
+            if (response.ok) {
+                messageDiv.textContent = result.message || 'Changes saved successfully.';
+                messageDiv.className = 'message success';
+                if (profileData.firstName || profileData.lastName) {
+                    document.getElementById('profileDisplayName').textContent = `${profileData.firstName || ''} ${profileData.lastName || ''}`.trim();
+                }
+            } else {
+                messageDiv.textContent = result.message || 'Failed to save changes.';
+                messageDiv.className = 'message error';
+            }
+        } catch (error) {
+            console.error('Profile update error:', error);
+            document.getElementById('profileMessage').textContent = 'Unable to connect to the server.';
+            document.getElementById('profileMessage').className = 'message error';
+        }
+    });
+
+    // Password form submission handler
+    document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const passwordData = Object.fromEntries(formData.entries());
+        
+        if (passwordData.newPassword !== passwordData.confirmPassword) {
+            document.getElementById('passwordMessage').textContent = 'The new password and confirmation do not match.';
+            document.getElementById('passwordMessage').className = 'message error';
+            return;
+        }
+        
+        try {
+            const response = await fetch('/api/password', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    currentPassword: passwordData.currentPassword,
+                    newPassword: passwordData.newPassword
+                })
+            });
+            
+            const result = await response.json();
+            const messageDiv = document.getElementById('passwordMessage');
+            
+            if (response.ok) {
+                messageDiv.textContent = result.message || 'Password changed successfully.';
+                messageDiv.className = 'message success';
+                document.getElementById('passwordForm').reset();
+            } else {
+                messageDiv.textContent = result.message || 'Failed to change password.';
+                messageDiv.className = 'message error';
+            }
+        } catch (error) {
+            console.error('Password change error:', error);
+            document.getElementById('passwordMessage').textContent = 'Unable to connect to the server.';
+            document.getElementById('passwordMessage').className = 'message error';
+        }
+    });
+
+    // Convert numbers to Persian on page load
+    const elementsWithNumbers = document.querySelectorAll('#studentId, #profileMembership, #birthDate');
+    elementsWithNumbers.forEach(element => {
+        if (element.textContent && element.textContent.match(/[0-9]/)) {
+            element.textContent = toEnglishNumerals(element.textContent);
+        }
+    });
+});
+</script>
+
+</body>  
+</html>

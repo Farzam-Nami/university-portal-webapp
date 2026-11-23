@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester Courses</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">AppName</div>
+        </div>
+        <div class="sidebar-menu">
+            <a href="/dashboard" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                    </svg>
+                </span>
+                &nbspDashboard
+            </a>
+            <a href="/food-reservation" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.20-1.10-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
+                    </svg>
+                </span>
+                &nbspFood Reservation
+            </a>
+            <a href="/requests" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                    </svg>
+                </span>
+                &nbspRequests
+            </a>
+            <a href="/courses" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19,3H5C3.9,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19Z"/>
+                        <path d="M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/>
+                    </svg>
+                </span>
+                &nbspSemester Courses
+            </a>
+            <a href="/financial" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20,8H4V6C4,4.89 4.89,4 6,4H18A2,2 0 0,1 20,6V8M4,10H20V19A2,2 0 0,1 18,21H6A2,2 0 0,1 4,19V10M6,12V14H18V12H6Z"/>
+                    </svg>
+                </span>
+                &nbspPayments & Finance
+            </a>
+            <a href="/news" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"/>
+                    </svg>
+                </span>
+                &nbspMessages & Announcements 
+            </a>
+            <a href="/profile" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </span>
+                &nbspProfile & Settings
+            </a>
+            <a href="#" onclick="confirmLogout()" class="menu-item logout-btn">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"/>
+                    </svg>
+                </span>
+                &nbspLogout
+            </a>
+        </div>
+    </div>
+
+    <!-- Menu toggle button for mobile -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Semester Courses</h1>
+        
+        <!-- Semester Selection -->
+        <div class="card">
+            <div class="card-title">Select Semester</div>
+            <div class="semester-selection">
+                <label for="semesterSelect">Select Semester:</label>
+                <select id="semesterSelect" onchange="onSemesterChange()" class="semester-dropdown">
+                    <option value="">Loading...</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Selected Semester Information</div>
+            <div class="semester-info">
+                <div class="info-item">
+                    <span class="info-label">Semester:</span>
+                    <span class="info-value" id="currentSemester">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Total Credits:</span>
+                    <span class="info-value" id="totalUnits">-</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Enrolled Courses</div>
+            <table class="courses-table">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Instructor</th>
+                        <th>Credits</th>
+                        <th>Class Time</th>
+                        <th>Exam Date</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- COURSES_TABLE_PLACEHOLDER -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Weekly Schedule</div>
+            <div class="weekly-schedule">
+                <table class="schedule-table">
+                    <thead>
+                        <tr><th>Time / Day</th><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="8" class="empty-state">No weekly schedule data is available.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script src="sidebar.js"></script>
+<script src="courses.js"></script>
+<script>
+function confirmLogout() {
+    if (confirm('Are you sure you want to log out?')) {
+        window.location.href = '/logout';
+    }
+}
+</script>
+</body>
+</html>

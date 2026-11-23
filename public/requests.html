@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requests</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">AppName</div>
+        </div>
+        <div class="sidebar-menu">
+            <a href="/dashboard" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                    </svg>
+                </span>
+                &nbspDashboard
+            </a>
+            <a href="/food-reservation" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.20-1.10-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
+                    </svg>
+                </span>
+                &nbspFood Reservation
+            </a>
+            <a href="/requests" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                    </svg>
+                </span>
+                &nbspRequests
+            </a>
+            <a href="/courses" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19,3H5C3.9,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19Z"/>
+                        <path d="M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/>
+                    </svg>
+                </span>
+                &nbspSemester Courses
+            </a>
+            <a href="/financial" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20,8H4V6C4,4.89 4.89,4 6,4H18A2,2 0 0,1 20,6V8M4,10H20V19A2,2 0 0,1 18,21H6A2,2 0 0,1 4,19V10M6,12V14H18V12H6Z"/>
+                    </svg>
+                </span>
+                &nbspPayments & Finance
+            </a>
+            <a href="/news" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"/>
+                    </svg>
+                </span>
+                &nbspMessages & Announcements
+            </a>
+            <a href="/profile" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </span>
+                &nbspProfile & Settings
+            </a>
+            <a href="#" onclick="confirmLogout()" class="menu-item logout-btn">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"/>
+                    </svg>
+                </span>
+                &nbspLogout
+            </a>
+        </div>
+    </div>
+
+    <!-- Menu toggle button for mobile -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Requests</h1>
+        
+        <div class="card">
+            <div class="card-title">Submit a New Request</div>
+            <div class="request-form">
+                <div class="form-row">
+                    <label>Request Title</label>
+                    <input type="text" id="requestTitle" placeholder="Enter the request title" required>
+                </div>
+                <div class="form-row">
+                    <label>Request Recipient</label>
+                    <select id="requestRecipient" required>
+                        <option value="">Select...</option>
+                        <option value="Head of Academic Affairs">Head of Academic Affairs</option>
+                        <option value="Department Chair">Department Chair</option>
+                        <option value="Faculty Academic Deputy">Faculty Academic Deputy</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>Description</label>
+                    <textarea id="requestDescription" placeholder="Enter the request description..." required></textarea>
+                </div>
+                <div class="form-row">
+                    <label>File Attachment</label>
+                    <input type="file" id="requestFile">
+                </div>
+                <button class="form-button" onclick="submitRequest()">Submit Request</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">My Requests</div>
+            <table class="request-table">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Request Title</th>
+                        <th>Recipient</th>
+                        <th>Submitted On</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="requestsTableBody">
+                    <!-- Requests will be loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Request Details Modal -->
+<div class="modal" id="requestModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="requestModalTitle">Request Details</h3>
+            <button class="close-btn" onclick="closeRequestModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="request-detail-info">
+                <div class="request-info-item">
+                    <strong>Request ID:</strong> <span id="modalRequestId"></span>
+                </div>
+                <div class="request-info-item">
+                    <strong>Title:</strong> <span id="modalRequestTitle"></span>
+                </div>
+                <div class="request-info-item">
+                    <strong>Recipient:</strong> <span id="modalRequestRecipient"></span>
+                </div>
+                <div class="request-info-item">
+                    <strong>Submitted On:</strong> <span id="modalRequestDate"></span>
+                </div>
+                <div class="request-info-item">
+                    <strong>Status:</strong> <span id="modalRequestStatus"></span>
+                </div>
+            </div>
+            <div class="request-description">
+                <strong>Description:</strong>
+                <div id="modalRequestDescription" class="description-content"></div>
+            </div>
+            <div class="request-file" id="modalRequestFile" style="display: none;">
+                <strong>Attachment:</strong>
+                <a href="#" id="modalFileLink" class="file-link">Download File</a>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeRequestModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<script src="sidebar.js"></script>
+<script>
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+    loadRequests();
+});
+
+// Load requests from database
+async function loadRequests() {
+    try {
+        const response = await fetch('/api/requests');
+        if (response.ok) {
+            const data = await response.json();
+            displayRequests(data.requests);
+        } else {
+            console.error('Failed to load requests');
+            showMessage('Failed to load requests.', 'error');
+        }
+    } catch (error) {
+        console.error('Error loading requests:', error);
+        showMessage('Failed to load requests.', 'error');
+    }
+}
+
+// Display requests in table
+function displayRequests(requests) {
+    const tbody = document.getElementById('requestsTableBody');
+    tbody.innerHTML = '';
+    
+    if (requests.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">No requests found.</td></tr>';
+        return;
+    }
+    
+    requests.forEach(request => {
+        const row = document.createElement('tr');
+        
+        // Determine status class
+        let statusClass = '';
+        switch(request.status) {
+            case 'Pending':
+                statusClass = 'status-pending';
+                break;
+            case 'Approved':
+                statusClass = 'status-approved';
+                break;
+            case 'Rejected':
+                statusClass = 'status-rejected';
+                break;
+        }
+        
+        row.innerHTML = `
+            <td>${toPersianNumerals(request.id)}</td>
+            <td>${request.title}</td>
+            <td>${request.recipient}</td>
+            <td>${toPersianNumerals(request.date)}</td>
+            <td class="${statusClass}">${request.status}</td>
+            <td><a href="#" class="view-btn" onclick="viewRequest('${request._id}')">View</a></td>
+        `;
+        
+        tbody.appendChild(row);
+    });
+}
+
+// Submit new request
+async function submitRequest() {
+    const title = document.getElementById('requestTitle').value.trim();
+    const recipient = document.getElementById('requestRecipient').value;
+    const description = document.getElementById('requestDescription').value.trim();
+    const fileInput = document.getElementById('requestFile');
+    
+    // Validation
+    if (!title) {
+        showMessage('Please enter a request title.', 'error');
+        return;
+    }
+    
+    if (!recipient) {
+        showMessage('Please select a recipient.', 'error');
+        return;
+    }
+    
+    if (!description) {
+        showMessage('Please enter a request description.', 'error');
+        return;
+    }
+    
+    try {
+        const requestData = {
+            title,
+            recipient,
+            description,
+            hasFile: fileInput.files.length > 0
+        };
+        
+        const response = await fetch('/api/requests', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            showMessage('Request submitted successfully.', 'success');
+            
+            // Clear form
+            document.getElementById('requestTitle').value = '';
+            document.getElementById('requestRecipient').value = '';
+            document.getElementById('requestDescription').value = '';
+            document.getElementById('requestFile').value = '';
+            
+            // Reload requests
+            loadRequests();
+        } else {
+            showMessage(result.message || 'Failed to submit the request.', 'error');
+        }
+    } catch (error) {
+        console.error('Error submitting request:', error);
+        showMessage('Failed to submit the request.', 'error');
+    }
+}
+
+// View request details
+async function viewRequest(requestId) {
+    try {
+        const response = await fetch(`/api/requests/${requestId}`);
+        if (response.ok) {
+            const request = await response.json();
+            displayRequestModal(request);
+        } else {
+            showMessage('Failed to load request details.', 'error');
+        }
+    } catch (error) {
+        console.error('Error loading request details:', error);
+        showMessage('Failed to load request details.', 'error');
+    }
+}
+
+// Display request in modal
+function displayRequestModal(request) {
+    document.getElementById('modalRequestId').textContent = toPersianNumerals(request.id);
+    document.getElementById('modalRequestTitle').textContent = request.title;
+    document.getElementById('modalRequestRecipient').textContent = request.recipient;
+    document.getElementById('modalRequestDate').textContent = toPersianNumerals(request.date);
+    document.getElementById('modalRequestStatus').textContent = request.status;
+    document.getElementById('modalRequestDescription').textContent = request.description;
+    
+    // Handle file attachment
+    const fileDiv = document.getElementById('modalRequestFile');
+    if (request.hasFile) {
+        fileDiv.style.display = 'block';
+        // You can implement file download functionality here
+    } else {
+        fileDiv.style.display = 'none';
+    }
+    
+    // Set status color in modal
+    const statusSpan = document.getElementById('modalRequestStatus');
+    statusSpan.className = '';
+    switch(request.status) {
+        case 'Pending':
+            statusSpan.className = 'status-pending';
+            break;
+        case 'Approved':
+            statusSpan.className = 'status-approved';
+            break;
+        case 'Rejected':
+            statusSpan.className = 'status-rejected';
+            break;
+    }
+    
+    document.getElementById('requestModal').style.display = 'block';
+}
+
+// Close request modal
+function closeRequestModal() {
+    document.getElementById('requestModal').style.display = 'none';
+}
+
+// Show message
+function showMessage(message, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}`;
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+        font-weight: 500;
+        max-width: 400px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        ${type === 'success' ? 
+            'background: #d4edda; color: #155724; border: 1px solid #c3e6cb;' : 
+            'background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;'}
+    `;
+    
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+        if (messageDiv.parentNode) {
+            messageDiv.parentNode.removeChild(messageDiv);
+        }
+    }, 5000);
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('requestModal');
+    if (event.target === modal) {
+        closeRequestModal();
+    }
+}
+
+function confirmLogout() {
+    if (confirm('Are you sure you want to log out?')) {
+        window.location.href = '/logout';
+    }
+}
+
+// Convert English numerals to Persian numerals
+function toPersianNumerals(str) {
+    const persianNumerals = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    return str.toString().replace(/[0-9]/g, function(match) {
+        return persianNumerals[parseInt(match)];
+    });
+}
+
+// Convert all numbers in the page to Persian
+function convertAllNumbersToPersian() {
+    // Convert numbers in table cells and modal content
+    const elementsToConvert = document.querySelectorAll('td, #modalRequestId, #modalRequestDate, .news-date, .message-date');
+    
+    elementsToConvert.forEach(element => {
+        if (element.textContent && element.textContent.match(/[0-9]/)) {
+            element.textContent = toPersianNumerals(element.textContent);
+        }
+    });
+}
+
+// Apply conversion when page loads and after content updates
+document.addEventListener('DOMContentLoaded', function() {
+    convertAllNumbersToPersian();
+});
+</script>
+</body>
+</html>

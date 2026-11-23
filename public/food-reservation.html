@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Reservation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">AppName</div>
+        </div>
+        <div class="sidebar-menu">
+            <a href="/dashboard" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                    </svg>
+                </span>
+                &nbspDashboard
+            </a>
+            <a href="/food-reservation" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.20-1.10-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
+                    </svg>
+                </span>
+                &nbspFood Reservation
+            </a>
+            <a href="/requests" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                    </svg>
+                </span>
+                &nbspRequests
+            </a>
+            <a href="/courses" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19,3H5C3.9,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19Z"/>
+                        <path d="M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/>
+                    </svg>
+                </span>
+                &nbspSemester Courses
+            </a>
+            <a href="/financial" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20,8H4V6C4,4.89 4.89,4 6,4H18A2,2 0 0,1 20,6V8M4,10H20V19A2,2 0 0,1 18,21H6A2,2 0 0,1 4,19V10M6,12V14H18V12H6Z"/>
+                    </svg>
+                </span>
+                &nbspPayments & Finance
+            </a>
+            <a href="/news" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"/>
+                    </svg>
+                </span>
+                &nbspMessages & Announcements
+            </a>
+            <a href="/profile" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </span>
+                &nbspProfile & Settings
+            </a>
+            <a href="#" onclick="confirmLogout()" class="menu-item logout-btn">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"/>
+                    </svg>
+                </span>
+                &nbspLogout
+            </a>
+        </div>
+    </div>
+
+    <!-- Menu toggle button for mobile -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1>Food Reservation</h1>
+            <p>Manage university cafeteria reservations.</p>
+        </div>
+
+        <!-- Balance Section -->
+        <div class="card balance-card">
+            <div class="card-header">
+                <h2>💰 Account Balance</h2>
+                <button class="btn btn-primary" onclick="showIncreaseBalanceModal()">Add Funds</button>
+            </div>
+            <div class="balance-display">
+                <span class="balance-amount" id="balanceAmount">0</span>
+                <span class="currency">Toman</span>
+            </div>
+        </div>
+
+        <!-- Reservation Form -->
+        <div class="card reservation-form-card">
+            <div class="card-header">
+                <h2>🍽️ New Reservation</h2>
+            </div>
+            <div class="reservation-form">
+                <!-- Cafeteria Selection -->
+                <div class="form-section">
+                    <label>Select Cafeteria:</label>
+                    <div class="cafeteria-grid">
+                        <div class="cafeteria-option" data-value="central">
+                            <div class="cafeteria-icon">🏫</div>
+                            <div class="cafeteria-name">Main Cafeteria</div>
+                        </div>
+                        <div class="cafeteria-option" data-value="electrical">
+                            <div class="cafeteria-icon">⚡</div>
+                            <div class="cafeteria-name">Engineering Cafeteria</div>
+                        </div>
+                        <div class="cafeteria-option" data-value="sobhan">
+                            <div class="cafeteria-icon">🍽️</div>
+                            <div class="cafeteria-name">Sobhan Restaurant</div>
+                        </div>
+                        <div class="cafeteria-option" data-value="golestan">
+                            <div class="cafeteria-icon">🌹</div>
+                            <div class="cafeteria-name">Golestan Restaurant</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date Selection -->
+                <div class="form-section">
+                    <label>Select Date:</label>
+                    <div class="date-grid" id="dateGrid">
+                        <!-- Dates will be generated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Meal Selection -->
+                <div class="form-section">
+                    <label>Select Meal:</label>
+                    <div class="meal-tabs">
+                        <button class="meal-tab active" data-meal="breakfast">Breakfast</button>
+                        <button class="meal-tab" data-meal="lunch">Lunch</button>
+                        <button class="meal-tab" data-meal="dinner">Dinner</button>
+                    </div>
+                    
+                    <!-- Food Selection -->
+                    <div class="food-grid">
+                        <!-- Breakfast Foods -->
+                        <div class="meal-section active" id="breakfast-section">
+                            <div class="food-item" data-meal="breakfast" data-name="Omelet" data-price="15000">
+                                <div class="food-image">🍳</div>
+                                <div class="food-info">
+                                    <div class="food-name">Omelet</div>
+                                    <div class="food-price">15,000 Toman</div>
+                                </div>
+                                <button class="food-select-btn">Select</button>
+                            </div>
+                            <div class="food-item" data-meal="breakfast" data-name="Kaleh Pacheh" data-price="25000">
+                                <div class="food-image">🍲</div>
+                                <div class="food-info">
+                                    <div class="food-name">Kaleh Pacheh</div>
+                                    <div class="food-price">25,000 Toman</div>
+                                </div>
+                                <button class="food-select-btn">Select</button>
+                            </div>
+                            <div class="food-item" data-meal="breakfast" data-name="Butter and Jam" data-price="12000">
+                                <div class="food-image">🍞</div>
+                                <div class="food-info">
+                                    <div class="food-name">Butter and Jam</div>
+                                    <div class="food-price">12,000 Toman</div>
+                                </div>
+                                <button class="food-select-btn">Select</button>
+                            </div>
+                        </div>
+
+                        <!-- Lunch Foods -->
+                        <div class="meal-section" id="lunch-section">
+                            <div class="food-item" data-meal="lunch" data-name="Abgoosht" data-price="35000">
+                                <div class="food-image">🥘</div>
+                                <div class="food-info">
+                                    <div class="food-name">Abgoosht</div>
+                                    <div class="food-price">35,000 Toman</div>
+                                </div>
+                                <button class="food-select-btn">Select</button>
+                            </div>
+                            <div class="food-item" data-meal="lunch" data-name="Chelo Kebab" data-price="45000">
+                                <div class="food-image">🍖</div>
+                                <div class="food-info">
+                                    <div class="food-name">Chelo Kebab</div>
+                                    <div class="food-price">45,000 Toman</div>
+                                </div>
+                                <button class="food-select-btn">Select</button>
+                            </div>
+                            <div class="food-item" data-meal="lunch" data-name="Gheimeh Stew" data-price="30000">
+                                <div class="food-image">🍛</div>
+                                <div class="food-info">
+                                    <div class="food-name">Gheimeh Stew</div>
+                                    <div class="food-price">30,000 Toman</div>
+                                </div>
+                                <button class="food-select-btn">Select</button>
+                            </div>
+                        </div>
+
+                        <!-- Dinner Foods -->
+                        <div class="meal-section" id="dinner-section">
+                            <div class="food-item" data-meal="dinner" data-name="Yatimcheh" data-price="28000">
+                                <div class="food-image">🍲</div>
+                                <div class="food-info">
+                                    <div class="food-name">Yatimcheh</div>
+                                    <div class="food-price">28,000 Toman</div>
+                                </div>
+                                <button class="food-select-btn">Select</button>
+                            </div>
+                            <div class="food-item" data-meal="dinner" data-name="Grilled Chicken" data-price="40000">
+                                <div class="food-image">🍗</div>
+                                <div class="food-info">
+                                    <div class="food-name">Grilled Chicken</div>
+                                    <div class="food-price">40,000 Toman</div>
+                                </div>
+                                <button class="food-select-btn">Select</button>
+                            </div>
+                            <div class="food-item" data-meal="dinner" data-name="Pasta" data-price="25000">
+                                <div class="food-image">🍝</div>
+                                <div class="food-info">
+                                    <div class="food-name">Pasta</div>
+                                    <div class="food-price">25,000 Toman</div>
+                                </div>
+                                <button class="food-select-btn">Select</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Reservations -->
+        <div class="card reservations-card">
+            <div class="card-header">
+                <h2>📅 Current Reservations</h2>
+                <button class="btn btn-secondary" onclick="loadReservations()">Refresh</button>
+            </div>
+            <div class="reservations-list" id="reservationsList">
+                <!-- Reservations will be loaded here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Increase Balance Modal -->
+<div class="modal" id="increaseBalanceModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add Funds</h3>
+            <button class="close-btn" onclick="closeIncreaseBalanceModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Amount (Toman):</label>
+                <input type="number" id="increaseAmount" placeholder="Enter the amount" min="1000" step="1000">
+            </div>
+            <div class="form-group">
+                <label>Payment Method:</label>
+                <select id="paymentMethod">
+                    <option value="online">Online Payment</option>
+                    <option value="card">Credit Card</option>
+                    <option value="bank">Bank Transfer</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeIncreaseBalanceModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="increaseBalance()">Pay</button>
+        </div>
+    </div>
+</div>
+
+<!-- Reservation Summary Modal -->
+<div class="modal" id="reservationModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Confirm Reservation</h3>
+            <button class="close-btn" onclick="closeReservationModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="reservation-summary">
+                <div class="summary-item">
+                    <span class="label">Cafeteria:</span>
+                    <span class="value" id="summaryCalculate"></span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Date:</span>
+                    <span class="value" id="summaryDate"></span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Meal:</span>
+                    <span class="value" id="summaryMeal"></span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Food:</span>
+                    <span class="value" id="summaryFood"></span>
+                </div>
+                <div class="summary-item total">
+                    <span class="label">Price:</span>
+                    <span class="value" id="summaryPrice"></span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeReservationModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="confirmReservation()">Confirm Reservation</button>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Reservation Modal -->
+<div class="modal" id="editReservationModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Edit Reservation</h3>
+            <button class="close-btn" onclick="closeEditReservationModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <!-- Cafeteria Selection -->
+            <div class="form-group">
+                <label>Select Cafeteria:</label>
+                <div class="cafeteria-grid" id="editCafeteriaGrid">
+                    <div class="cafeteria-option" data-value="central">
+                        <div class="cafeteria-icon">🏫</div>
+                        <div class="cafeteria-name">Main Cafeteria</div>
+                    </div>
+                    <div class="cafeteria-option" data-value="electrical">
+                        <div class="cafeteria-icon">⚡</div>
+                        <div class="cafeteria-name">Engineering Cafeteria</div>
+                    </div>
+                    <div class="cafeteria-option" data-value="sobhan">
+                        <div class="cafeteria-icon">🍽️</div>
+                        <div class="cafeteria-name">Sobhan Restaurant</div>
+                    </div>
+                    <div class="cafeteria-option" data-value="golestan">
+                        <div class="cafeteria-icon">🌹</div>
+                        <div class="cafeteria-name">Golestan Restaurant</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meal Selection -->
+            <div class="form-group">
+                <label>Select Meal:</label>
+                <div class="meal-tabs" id="editMealTabs">
+                    <button class="meal-tab" data-meal="breakfast">Breakfast</button>
+                    <button class="meal-tab" data-meal="lunch">Lunch</button>
+                    <button class="meal-tab" data-meal="dinner">Dinner</button>
+                </div>
+            </div>
+
+            <!-- Food Selection -->
+            <div class="form-group">
+                <label>Select Food:</label>
+                <div class="food-grid" id="editFoodGrid">
+                    <!-- Foods will be populated by JavaScript based on selected meal -->
+                </div>
+            </div>
+
+            <!-- Current vs New Summary -->
+            <div class="edit-summary">
+                <div class="current-reservation">
+                    <h4>Current Reservation:</h4>
+                    <div id="currentReservationSummary"></div>
+                </div>
+                <div class="new-reservation">
+                    <h4>New Reservation:</h4>
+                    <div id="newReservationSummary"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeEditReservationModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="confirmEditReservation()">Confirm Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Date Picker Modal -->
+<div class="modal" id="customDateModal">
+    <div class="modal-content date-picker-modal">
+        <div class="modal-header">
+            <h3>Select Date</h3>
+            <button class="close-btn" onclick="closeDatePickerModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="date-picker-container">
+                <div class="date-picker-section">
+                    <label>Day:</label>
+                    <select id="daySelect" class="date-select">
+                        <!-- Days will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="date-picker-section">
+                    <label>Month:</label>
+                    <select id="monthSelect" class="date-select">
+                        <option value="1">Farvardin</option>
+                        <option value="2">Ordibehesht</option>
+                        <option value="3">Khordad</option>
+                        <option value="4">Tir</option>
+                        <option value="5">Mordad</option>
+                        <option value="6">Shahrivar</option>
+                        <option value="7">Mehr</option>
+                        <option value="8">Aban</option>
+                        <option value="9">Azar</option>
+                        <option value="10">Dey</option>
+                        <option value="11">Bahman</option>
+                        <option value="12">Esfand</option>
+                    </select>
+                </div>
+                <div class="date-picker-section">
+                    <label>Year:</label>
+                    <select id="yearSelect" class="date-select">
+                        <!-- Years will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+            <div class="selected-date-preview">
+                <span id="datePreview">Select a date</span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeDatePickerModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="confirmDateSelection()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script src="sidebar.js"></script>
+<script>
+function confirmLogout() {
+    if (confirm('Are you sure you want to log out?')) {
+        window.location.href = '/logout';
+    }
+}
+</script>
+<script src="food-reservation.js"></script>
+
+</body>  
+</html>

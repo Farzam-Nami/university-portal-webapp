@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments & Finance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">AppName</div>
+        </div>
+        <div class="sidebar-menu">
+            <a href="/dashboard" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                    </svg>
+                </span>
+                &nbspDashboard
+            </a>
+            <a href="/food-reservation" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.20-1.10-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
+                    </svg>
+                </span>
+                &nbspFood Reservation
+            </a>
+            <a href="/requests" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                    </svg>
+                </span>
+                &nbspRequests
+            </a>
+            <a href="/courses" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19,3H5C3.9,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.9 20.1,3 19,3M19,19H5V5H19V19Z"/>
+                        <path d="M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/>
+                    </svg>
+                </span>
+                &nbspSemester Courses
+            </a>
+            <a href="/financial" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20,8H4V6C4,4.89 4.89,4 6,4H18A2,2 0 0,1 20,6V8M4,10H20V19A2,2 0 0,1 18,21H6A2,2 0 0,1 4,19V10M6,12V14H18V12H6Z"/>
+                    </svg>
+                </span>
+                &nbspPayments & Finance
+            </a>
+            <a href="/news" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"/>
+                    </svg>
+                </span>
+                &nbspMessages & Announcements
+            </a>
+            <a href="/profile" class="menu-item">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                </span>
+                &nbspProfile & Settings
+            </a>
+            <a href="#" onclick="confirmLogout()" class="menu-item logout-btn">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z"/>
+                    </svg>
+                </span>
+                &nbspLogout
+            </a>
+        </div>
+    </div>
+
+    <!-- Menu toggle button for mobile -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Payments & Finance</h1>
+        
+        <!-- Balance Section -->
+        <div class="card balance-card">
+            <div class="card-header">
+                <h2>💰 Account Balance</h2>
+                <button class="btn btn-primary" onclick="showIncreaseBalanceModal()">Add Funds</button>
+            </div>
+            <div class="balance-display">
+                <span class="balance-amount" id="balanceAmount">0</span>
+                <span class="currency">Toman</span>
+            </div>
+        </div>
+        
+        <!-- Debt Section -->
+        <div class="card debt-card">
+            <div class="card-header">
+                <h2>💳 Current Debt</h2>
+                <button class="btn btn-danger" id="settleDebtBtn" onclick="settleDebt()" disabled>Settle Debt</button>
+            </div>
+            
+            <!-- Tuition Debt -->
+            <div class="debt-item">
+                <div class="debt-label">🎓 Semester Tuition:</div>
+                <div class="debt-value">
+                    <span class="debt-amount" id="tuitionDebt">2,500,000</span>
+                    <span class="currency">Toman</span>
+                </div>
+            </div>
+            
+            <!-- Dormitory Debt -->
+            <div class="debt-item">
+                <div class="debt-label">🏠 Dormitory Fee:</div>
+                <div class="debt-value">
+                    <span class="debt-amount" id="dormitoryDebt">750,000</span>
+                    <span class="currency">Toman</span>
+                </div>
+            </div>
+            
+            <!-- Total Debt -->
+            <div class="debt-total">
+                <div class="debt-label"><strong>Total Debt:</strong></div>
+                <div class="debt-value">
+                    <span class="debt-amount" id="totalDebt">3,250,000</span>
+                    <span class="currency">Toman</span>
+                </div>
+            </div>
+            
+            <div class="debt-info" id="debtInfo">
+                <p>Make sure your account has enough funds before settling your debt.</p>
+            </div>
+        </div>
+        
+
+        
+        <div class="card">
+            <div class="card-title">Payment History</div>
+            <table class="payments-table">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Date</th>
+                        <th>Amount (Toman)</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Receipt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6" class="empty-state">No payment records are available.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Increase Balance Modal -->
+<div class="modal" id="increaseBalanceModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add Funds</h3>
+            <button class="close-btn" onclick="closeIncreaseBalanceModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Amount (Toman):</label>
+                <input type="number" id="increaseAmount" placeholder="Enter the amount" min="1000" step="1000">
+            </div>
+            <div class="form-group">
+                <label>Payment Method:</label>
+                <select id="paymentMethod">
+                    <option value="online">Online Payment</option>
+                    <option value="card">Credit Card</option>
+                    <option value="bank">Bank Transfer</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeIncreaseBalanceModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="increaseBalance()">Pay</button>
+        </div>
+    </div>
+</div>
+
+<script src="sidebar.js"></script>
+<script>
+// Financial page functionality
+let currentBalance = 0;
+let currentDebt = 0;
+let tuitionDebt = 2500000; // Default tuition debt - always this value on load
+let dormitoryDebt = 750000; // Default dormitory debt - always this value on load
+let isDebtSettled = false; // Track if debt has been settled in this session
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+    loadFinancialData();
+    // Apply Persian number conversion after a short delay to ensure content is loaded
+    setTimeout(convertAllNumbersToEnglish, 100);
+});
+
+// Load financial data
+async function loadFinancialData() {
+    try {
+        // Load balance
+        const balanceResponse = await fetch('/api/food/balance');
+        if (balanceResponse.ok) {
+            const balanceData = await balanceResponse.json();
+            currentBalance = balanceData.balance;
+            updateBalanceDisplay();
+        }
+        
+        // Always show default debt values (don't load from API)
+        // Reset to defaults every time page loads
+        tuitionDebt = 2500000;
+        dormitoryDebt = 750000;
+        isDebtSettled = false;
+        
+        updateDebtDisplay();
+    } catch (error) {
+        console.error('Error loading financial data:', error);
+        showMessage('Failed to load financial information.', 'error');
+    }
+}
+
+// Update balance display
+function updateBalanceDisplay() {
+    document.getElementById('balanceAmount').textContent = formatPrice(currentBalance);
+}
+
+// Update debt display
+function updateDebtDisplay() {
+    const totalDebt = tuitionDebt + dormitoryDebt;
+    currentDebt = totalDebt; // Make sure currentDebt is properly set
+    
+    // Update individual debt amounts
+    document.getElementById('tuitionDebt').textContent = formatPrice(tuitionDebt);
+    document.getElementById('dormitoryDebt').textContent = formatPrice(dormitoryDebt);
+    document.getElementById('totalDebt').textContent = formatPrice(totalDebt);
+    
+    const settleBtn = document.getElementById('settleDebtBtn');
+    const debtInfo = document.getElementById('debtInfo');
+    
+    if (totalDebt > 0) {
+        settleBtn.disabled = currentBalance < totalDebt;
+        if (currentBalance < totalDebt) {
+            debtInfo.innerHTML = `<p style="color: #e74c3c;">Insufficient balance! You need ${formatPrice(totalDebt)} Toman to settle the full debt.</p>`;
+        } else {
+            debtInfo.innerHTML = `<p style="color: #27ae60;">Your balance is sufficient to settle the debt.</p>`;
+        }
+    } else {
+        settleBtn.disabled = true;
+        debtInfo.innerHTML = '<p style="color: #27ae60;">Good news! You have no outstanding debt.</p>';
+    }
+}
+
+// Show increase balance modal
+function showIncreaseBalanceModal() {
+    document.getElementById('increaseBalanceModal').style.display = 'block';
+    document.getElementById('increaseAmount').value = '';
+}
+
+// Close increase balance modal
+function closeIncreaseBalanceModal() {
+    document.getElementById('increaseBalanceModal').style.display = 'none';
+}
+
+// Increase balance
+async function increaseBalance() {
+    const amount = parseInt(document.getElementById('increaseAmount').value);
+    const paymentMethod = document.getElementById('paymentMethod').value;
+    
+    if (!amount || amount < 1000) {
+        showMessage('The amount must be at least 1,000 Toman.', 'error');
+        return;
+    }
+    
+    try {
+        const response = await fetch('/api/food/increase-balance', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ amount, paymentMethod })
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            showMessage(result.message, 'success');
+            currentBalance += amount;
+            updateBalanceDisplay();
+            updateDebtDisplay();
+            closeIncreaseBalanceModal();
+        } else {
+            showMessage(result.message, 'error');
+        }
+    } catch (error) {
+        console.error('Error increasing balance:', error);
+        showMessage('Failed to add funds.', 'error');
+    }
+}
+
+// Settle debt
+async function settleDebt() {
+    // Always use current debt values (not API values)
+    const totalDebt = tuitionDebt + dormitoryDebt;
+    
+    if (totalDebt <= 0 || isDebtSettled) {
+        showMessage('There is no debt to settle.', 'error');
+        return;
+    }
+    
+    if (currentBalance < totalDebt) {
+        showMessage('Insufficient balance to settle the debt.', 'error');
+        return;
+    }
+    
+    let debtDetails = 'Semester Tuition: ' + formatPrice(tuitionDebt) + ' Toman\n';
+    debtDetails += 'Dormitory Fee: ' + formatPrice(dormitoryDebt) + ' Toman\n';
+    debtDetails += 'Total: ' + formatPrice(totalDebt) + ' Toman';
+    
+    if (confirm(`Are you sure you want to settle the full debt?\n\n${debtDetails}`)) {
+        try {
+            // Use the existing debt settlement API
+            const response = await fetch('/api/financial/settle-debt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    tuitionDebt: tuitionDebt, 
+                    dormitoryDebt: dormitoryDebt,
+                    totalDebt: totalDebt 
+                })
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                
+                // Update local values
+                currentBalance -= totalDebt;
+                tuitionDebt = 0;
+                dormitoryDebt = 0;
+                isDebtSettled = true;
+                
+                updateBalanceDisplay();
+                updateDebtDisplay();
+                
+                showMessage('Debt settled successfully.', 'success');
+            } else {
+                const error = await response.json();
+                showMessage(error.message || 'Failed to settle the debt.', 'error');
+            }
+        } catch (error) {
+            console.error('Error settling debt:', error);
+            showMessage('Failed to settle the debt.', 'error');
+        }
+    }
+}
+
+// Show message
+function showMessage(message, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}`;
+    messageDiv.textContent = message;
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+        font-weight: 500;
+        max-width: 400px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        ${type === 'success' ? 
+            'background: #d4edda; color: #155724; border: 1px solid #c3e6cb;' : 
+            'background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;'}
+    `;
+    
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+        if (messageDiv.parentNode) {
+            messageDiv.parentNode.removeChild(messageDiv);
+        }
+    }, 5000);
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('increaseBalanceModal');
+    if (event.target === modal) {
+        closeIncreaseBalanceModal();
+    }
+}
+
+function confirmLogout() {
+    if (confirm('Are you sure you want to log out?')) {
+        window.location.href = '/logout';
+    }
+}
+
+// Convert Persian and Arabic-Indic digits to Western digits.
+function toEnglishNumerals(value) {
+    return String(value).replace(/[\u06F0-\u06F9\u0660-\u0669]/g, digit => {
+        const code = digit.charCodeAt(0);
+        return String(code >= 0x06F0 ? code - 0x06F0 : code - 0x0660);
+    });
+}
+
+// Format number with comma separator and convert to Persian
+function formatPrice(price) {
+    return toEnglishNumerals(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+}
+
+// Convert all numbers in the page to Persian
+function convertAllNumbersToEnglish() {
+    // Convert numbers in balance, debt amounts, and table
+    const elementsToConvert = document.querySelectorAll('.balance-amount, .debt-amount, td, .status-approved');
+    
+    elementsToConvert.forEach(element => {
+        if (element.textContent && element.textContent.match(/[0-9]/)) {
+            element.textContent = toEnglishNumerals(element.textContent);
+        }
+    });
+
+    // Convert static table content
+    const staticTableRows = document.querySelectorAll('.payments-table tbody tr');
+    staticTableRows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        cells.forEach(cell => {
+            if (cell.textContent && cell.textContent.match(/[0-9]/)) {
+                cell.textContent = toEnglishNumerals(cell.textContent);
+            }
+        });
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+    <div class="form-container signup-container">
+        <h1>Sign Up</h1>
+        <form class="form signup-form" id="form">
+            <!-- Two-column layout container -->
+            <div class="signup-columns-container">
+                <!-- Left Column -->
+                <div class="signup-column">
+                    <!-- Account Information -->
+                    <div class="form-section">
+                        <h3 class="section-title">Account Information</h3>
+                        <div class="form-row-group">
+                            <div class="form-group half-width">
+                                <input type="text" name="username" placeholder="Username" required>
+                            </div>
+                            <div class="form-group half-width">
+                                <input type="email" name="email" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Academic Information -->
+                    <div class="form-section">
+                        <h3 class="section-title">Academic Information</h3>
+                        <div class="form-row-group">
+                            <div class="form-group half-width">
+                                <input type="text" name="studentId" placeholder="Student ID" required>
+                            </div>
+                            <div class="form-group half-width">
+                                <select name="major" required>
+                                    <option value="">Select your major</option>
+                                    <option value="Computer Engineering">Computer Engineering</option>
+                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                    <option value="Civil Engineering">Civil Engineering</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Chemical Engineering">Chemical Engineering</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select name="faculty" required>
+                                <option value="">Select your faculty</option>
+                                <option value="Faculty of Engineering">Faculty of Engineering</option>
+                                <option value="Faculty of Science">Faculty of Science</option>
+                                <option value="Faculty of Humanities">Faculty of Humanities</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="signup-column">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3 class="section-title">Personal Information</h3>
+                        <div class="form-row-group">
+                            <div class="form-group half-width">
+                                <input type="text" name="firstName" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group half-width">
+                                <input type="text" name="lastName" placeholder="Last name" required>
+                            </div>
+                        </div>
+                        <div class="form-row-group">
+                            <div class="form-group half-width">
+                                <input type="text" name="nationalId" placeholder="National ID" required pattern="[0-9]{10}" title="National ID must contain exactly 10 digits.">
+                            </div>
+                            <div class="form-group half-width">
+                                <input type="text" name="birthDate" placeholder="Date of Birth: YYYY-MM-DD" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" title="Use the YYYY-MM-DD format.">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Submit Button and Message -->
+            <button type="submit" class="form-button signup-button">Sign Up</button>
+            <div id="message" class="error-message"></div>
+        </form>
+        <hr class="form-separator">
+        <h2>Already have an account?</h2>
+        <button onclick="window.location.href='/login'" class="secondary-button">Log In</button>
+        
+    </div>
+
+    <script>
+        const form = document.getElementById('form');
+        const messageDiv = document.getElementById('message'); 
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); 
+            const formData = new FormData(form); 
+            const jsonData = {}; 
+            formData.forEach((value, key) => { 
+                jsonData[key] = value; 
+            });
+            try { 
+                const response = await fetch('/signup', { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify(jsonData), 
+            });
+            const result = await response.json();
+
+            if (!response.ok) {
+                    messageDiv.textContent = result.message || 'Signup failed.';
+                    return;
+                }
+
+                // Show the successful registration response.
+                messageDiv.textContent = result.message || 'Signup successful!';
+                messageDiv.className = 'success-message';
+                form.reset();
+
+            } catch (error) {
+                console.error('Error:', error);
+                messageDiv.textContent = 'Signup failed. Please try again.';
+            }
+        });   
+    </script>
+
+
+</body>
+</html>
